@@ -10,7 +10,7 @@ const router = express.Router()
 // 当前路径 http://127.0.0.1:3000/admin/cars/
 router.get('/',CarAdminController.findAll)
 router.post('/',uploda.single("img"),CarAdminController.create)
-router.put('/:id',CarAdminController.update)
+router.put('/:id',uploda.single("img") ,CarAdminController.update)
 router.delete('/:id',CarAdminController.delete)
 
 

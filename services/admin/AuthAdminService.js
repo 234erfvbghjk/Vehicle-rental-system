@@ -43,9 +43,9 @@ const AuthAdminService = {
     }
   },
 //   修改
-  update:async ({id})=> {
-    const row = await user.update( {where: {userId: id}})
-    return row
+  update: async (id, data) => {
+    const [updatedRowsCount] = await user.update(data, { where: { userId: id } });
+    return updatedRowsCount > 0;
   },
   // 删除
   delete:async ({id})=>{

@@ -27,7 +27,7 @@ router.post('/login', AuthAdminController.login)
 /**
  * url: /admin/auth/id
  */
-router.put('/:id',AuthAdminController.update)
+router.put('/:id', uploda.single('UserImg') ,AuthAdminController.update)
 // 管理员删除用户或者删除管理员信息
 /**
  * url: /admin/auth/id

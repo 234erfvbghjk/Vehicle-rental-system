@@ -19,9 +19,12 @@ const CarAdminService = {
         });
         return row;
     },
-    update: async ({id, CarName, CarPrice, cid}) => {
-        const row = await Car.update({CarName, CarPrice, cid}, {where: {CarId: id}});
-        return row;
+    update: async ({ id, CarName, CarPrice, cid }) => {
+        const [row] = await Car.update(
+            { CarName, CarPrice, cid },
+            { where: { CarId: id } }
+        );
+        return row > 0;
     },
     delete: async ({id}) => {
         const row = await Car.destroy({where: {CarId: id}});

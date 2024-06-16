@@ -20,20 +20,28 @@ const CarAdminController = {
         }
     },
     update: async (req, res) => {
-        const {id} = req.params;
-        const {CarName, CarPrice, cid} = req.body;
-        const result = await CarAdminService.update({id, CarName, CarPrice, cid});
+        const { id } = req.params;
+        const file = req.file ? req.file : "";
+
+        // 如果有上传文件，则更新 img 字段
+        if (file) {
+            req.body.img = file.path.substring(6);
+        }
+
+        const { CarName, CarPrice, cid } = req.body;
+        const result = await CarAdminService.update({ id, CarName, CarPrice, cid });
+
         if (!result) {
-            res.json({
+            return res.json({
                 code: -1,
                 msg: "修改失败"
             });
-        } else {
-            res.json({
-                code: 1,
-                msg: "修改成功"
-            });
         }
+
+        res.json({
+            code: 1,
+            msg: "修改成功"
+        });
     },
     delete: async (req, res) => {
         const {id} = req.params;
